@@ -11,7 +11,8 @@ public class Trampa {
      * @param danyo
      */
     public Trampa(String descripcion, int danyo) {
-
+        this.descripcion = descripcion;
+        this.danyo = danyo;
     }
 
     /**
