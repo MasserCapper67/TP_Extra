@@ -55,4 +55,18 @@ public class Utilidades {
         }
         return alfabetico;
     }
+
+    public static String leerMovimiento(Scanner teclado, String mensaje) {
+        String movimiento = null;
+        boolean correcto = false;
+        while (!correcto) {
+            System.out.println(mensaje);
+            movimiento = teclado.nextLine();
+            if (movimiento.equals("N".toUpperCase()) || movimiento.equals("S".toUpperCase())
+            || movimiento.equals("W".toUpperCase()) || movimiento.equals("E".toUpperCase()) {
+                correcto = true;
+            }
+        }
+        return movimiento;
+    }
 }
