@@ -232,7 +232,60 @@ public class Motor {
      * @param random
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
+        int filaActual = 0;
+        int columnaActual = 0;
+        boolean muerto = false;
+        boolean victoria = false;
+        random = new Random();
+        Sala salaActual = mapa[filaActual][columnaActual];
+        while (!muerto && !victoria) {
+            mostrarMapa(filaActual, columnaActual);
+            System.out.println(salaActual.getDescripcion());
+            seleccionarMovimiento(teclado, salaActual);
+            filaActual = salaActual.getFila();
+            columnaActual = salaActual.getColumna();
 
+            if (salaActual.hayTrampas()) {
+                Trampa[] trampas = salaActual.getTrampas();
+                for (int i = 0; i < trampas.length; i++) {
+                    int precisionTrampa = random.nextInt(50) + 1;
+                     if (precisionTrampa > personaje.getDestreza()) {
+                         System.out.println("¡Eres tomado por sorpresa por la trampa " + trampas[i].getDescripcion()
+                                  + "!\nRecibes " + trampas[i].getDanyo() + " puntos de daño...");
+                         personaje.recibirDanyo(trampas[i].getDanyo());
+                         if (personaje.getVida() <= 0) muerto = true;
+                     } else {
+                         System.out.println("¡Esquivaste la trampa " + trampas[i].getDescripcion() + "!");
+                     }
+                }
+            }
+
+            while (salaActual.hayMonstruos() && !muerto) {
+                Monstruo monstruoAtacado = salaActual.seleccionarMonstruo(teclado);
+                while (personaje.getVida() > 0 && monstruoAtacado.getVida() > 0) {
+                    System.out.println("¡Atacas a " + monstruoAtacado.getNombre() + "!");
+                    monstruoAtacado.recibirDanyo(personaje.getAtaque());
+                    if (monstruoAtacado.getVida() > 0) {
+                        System.out.println("¡" + monstruoAtacado.getNombre() + " ataca a " + personaje.getNombre() + "!");
+                        personaje.recibirDanyo(monstruoAtacado.getAtaque());
+                    }
+                }
+                if (personaje.getVida() <= 0) muerto = true;
+                else {
+                    System.out.println("¡Derrotaste a " + monstruoAtacado.getNombre() + "!");
+                    salaActual.eliminarMonstruo(monstruoAtacado.getNombre());
+                }
+            }
+
+            while (salaActual.hayItems()) {
+                Item itemSeleccionado = salaActual.seleccionarItem(teclado);
+                salaActual.eliminarItem(itemSeleccionado.getDescripcion());
+                personaje.infoMochila();
+            }
+        }
+        if (muerto) {
+            System.out.println("Moriste. Fin de la partida,");
+        }
     }
 
     /**
