@@ -1,0 +1,20 @@
+0;0;Espada Mágica;1.5;100
+0;3;Poción de Curación;0.5;50
+0;3;Escudo de Oro;3.0;150
+0;3;Daga de Plata;0.7;70
+1;1;Armadura Encantada;5.0;200
+1;1;Amuleto Místico;0.3;120
+1;2;Sombrero de Mago;0.2;80
+1;2;Oro del Goblin;0.5;50
+3;1;Escala de Dragón;2.0;100
+1;2;Ala de Hada;0.1;90
+3;1;Martillo Enano;2.5;110
+3;3;Arco Elfo;1.0;90
+3;3;Club de Troll;3.0;80
+3;1;Hacha de Orco;2.5;70
+4;1;Bota de Gigante;4.0;60
+4;1;Medalla de Héroe;0.3;200
+4;2;Pergamino Antiguo;0.2;150
+4;2;Orbe Místico;1.0;100
+4;3;Anillo Encantado;0.1;120
+4;3;Bola de Cristal;1.0;100

@@ -1,0 +1,6 @@
+0;1;Foso;10
+0;3;Trampa de Flechas;5
+2;3;Trampa de Fuego;15
+2;3;Paredes Móviles;10
+3;1;Trampa de Electricidad;15
+3;3;Trampa de Hielo;15

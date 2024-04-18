@@ -17,7 +17,18 @@ public class Aventuras {
      * @param args
      */
     public static void main(String[] args) {
-
+        int filas = Integer.parseInt(args[0]);
+        int columnas = Integer.parseInt(args[1]);
+        int maxItems = Integer.parseInt(args[2]);
+        int maxMonstruos = Integer.parseInt(args[3]);
+        int maxTrampas = Integer.parseInt(args[4]);
+        String ficheroSalas = args[5];
+        String ficheroMonstruos = args[6];
+        String ficheroTrampas = args[7];
+        String ficheroPuntuaciones = args[8];
+        Scanner teclado = new Scanner(System.in);
+        Personaje jugador = Personaje.crearPersonaje(teclado);
+        Motor engine = new Motor(5, 5, )
     }
 
     /**

@@ -1,0 +1,13 @@
+0;0;Habitación inicial
+0;1;Bosque encantado
+0;3;Guarida del dragón
+1;1;Escondite del duende
+1;2;Prado de las hadas
+1;3;Cementerio encantado
+2;1;Cabaña de la bruja
+2;3;Torre del mago
+3;1;Mina de los enanos
+3;3;Pueblo elfo
+4;1;Puente del minotauro
+4;2;Río místico
+4;3;Habitación de salida

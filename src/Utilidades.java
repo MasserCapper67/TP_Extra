@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -41,7 +42,12 @@ public class Utilidades {
         int result = 0;
         do {
             System.out.println(mensaje);
-            result = teclado.nextInt();
+            try {
+                result = teclado.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Introduce un valor numérico.");
+                leerNumero(teclado, mensaje, minimo, maximo);
+            }
         } while (result < minimo || result > maximo);
         return result;
     }
@@ -63,7 +69,7 @@ public class Utilidades {
             System.out.println(mensaje);
             movimiento = teclado.nextLine();
             if (movimiento.equals("N".toUpperCase()) || movimiento.equals("S".toUpperCase())
-            || movimiento.equals("W".toUpperCase()) || movimiento.equals("E".toUpperCase()) {
+            || movimiento.equals("W".toUpperCase()) || movimiento.equals("E".toUpperCase())) {
                 correcto = true;
             }
         }

@@ -1,0 +1,13 @@
+0;0;Trasgo;20;5;2
+0;1;Orco;30;10;4
+0;1;Troll;50;15;6
+0;3;Dragón;100;20;8
+1;1;Araña Gigante;40;8;3
+1;1;Duende;25;5;1
+1;3;Vampiro;60;12;5
+1;3;Hombre Lobo;80;16;7
+1;3;Fantasma;45;9;3
+2;1;Bruja;55;11;4
+4;1;Minotauro;65;13;6
+4;1;Arpía;35;7;2
+4;3;Jefe Final;120;24;10

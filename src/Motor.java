@@ -23,7 +23,7 @@ public class Motor {
         this.mapa = new Sala[filas][columnas];
         this.maxItemsPorSala = maxItemsPorSala;
         this.maxMonstruosPorSala = maxMonstruosPorSala;
-        this.maxTrampasPorSala = maxItemsPorSala;
+        this.maxTrampasPorSala = maxTrampasPorSalas;
     }
 
     /**
@@ -38,6 +38,7 @@ public class Motor {
     Sala[][] cargarMapa(String ficheroMapa) {
         Sala[][] mapa = this.mapa;
         BufferedReader bufferedReader = null;
+        ficheroMapa = "fichSalas.txt";
         try {
             bufferedReader = new BufferedReader(new FileReader(ficheroMapa));
             String line;
@@ -65,6 +66,7 @@ public class Motor {
      */
     private void cargarItems(String ficheroItems) {
         BufferedReader bufferedReader = null;
+        ficheroItems = "fichItems.txt";
         try {
             bufferedReader = new BufferedReader(new FileReader(ficheroItems));
             String line;
@@ -96,6 +98,7 @@ public class Motor {
      */
     private void cargarMonstruos(String ficheroMonstruos) {
         BufferedReader bufferedReader = null;
+        ficheroMonstruos = "fichMonstruos.txt";
         try {
             bufferedReader = new BufferedReader(new FileReader(ficheroMonstruos));
             String line;
@@ -127,6 +130,7 @@ public class Motor {
      */
     private void cargarTrampas(String ficheroTrampas) {
         BufferedReader bufferedReader = null;
+        ficheroTrampas = "fichTrampas.txt";
         try {
             bufferedReader = new BufferedReader(new FileReader(ficheroTrampas));
             String line;
@@ -212,20 +216,20 @@ public class Motor {
 
     /**
      * Método jugar para empezar a jugar con el personaje
-     * TODO método complejo en el que hay que seguir la siguiente ejecución:
-     *  1. mostrar el mapa por pantalla
-     *  2. Obtener la sala actual y mientras el personaje tenga vida y no haya llegado a la casilla final
-     *  3. Durante una jugada mostrar la descripcion de la sala actual
-     *  4. Comprobar si hay monstruos en la sala y si es así entrar en combate
-     *  4.a El combate acaba cuando la vida del monstruo o la vida del personaje llega a 0
-     *  4.b cada turno en el combate el personaje ataca al monstruo y restamos su vida
-     *  4.c Si la vida no llega a 0 el monstruo hace daño al personaje
-     *  5. Las salas pueden tener trampas
-     *  5.a Si hay trampa hay que comprobar si un valor aleatorio entre 1 y 50 es inferior a la destreza del personaje, si es asi esquiva la trampa
-     *  5.b Si no esquiva la trampa el personaje recibe daño
-     *  5.c al igual que en combate hay que tener en cuenta si la vida del personaje lleva a 0
-     *  6. Por último puede haber items en la sala, en cuyo caso habrá que preguntar al usuario qué ítems quiere guardarse (o NINGUNO para terminar)
-     *  ¡IMPORTANTE! se debe mostrar por pantalla avisos para cada opción dando feedback al usuario de todo lo que ocurra (consultar enunciado)
+     * método complejo en el que hay que seguir la siguiente ejecución:
+     * 1. mostrar el mapa por pantalla
+     * 2. Obtener la sala actual y mientras el personaje tenga vida y no haya llegado a la casilla final
+     * 3. Durante una jugada mostrar la descripcion de la sala actual
+     * 4. Comprobar si hay monstruos en la sala y si es así entrar en combate
+     * 4.a El combate acaba cuando la vida del monstruo o la vida del personaje llega a 0
+     * 4.b cada turno en el combate el personaje ataca al monstruo y restamos su vida
+     * 4.c Si la vida no llega a 0 el monstruo hace daño al personaje
+     * 5. Las salas pueden tener trampas
+     * 5.a Si hay trampa hay que comprobar si un valor aleatorio entre 1 y 50 es inferior a la destreza del personaje, si es asi esquiva la trampa
+     * 5.b Si no esquiva la trampa el personaje recibe daño
+     * 5.c al igual que en combate hay que tener en cuenta si la vida del personaje lleva a 0
+     * 6. Por último puede haber items en la sala, en cuyo caso habrá que preguntar al usuario qué ítems quiere guardarse (o NINGUNO para terminar)
+     * ¡IMPORTANTE! se debe mostrar por pantalla avisos para cada opción dando feedback al usuario de todo lo que ocurra (consultar enunciado)
      *
      * @param teclado
      * @param personaje
@@ -238,6 +242,7 @@ public class Motor {
         boolean victoria = false;
         random = new Random();
         Sala salaActual = mapa[filaActual][columnaActual];
+        Sala salaFinal = mapa[mapa.length - 1][mapa[0].length - 1];
         while (!muerto && !victoria) {
             mostrarMapa(filaActual, columnaActual);
             System.out.println(salaActual.getDescripcion());
@@ -249,14 +254,14 @@ public class Motor {
                 Trampa[] trampas = salaActual.getTrampas();
                 for (int i = 0; i < trampas.length; i++) {
                     int precisionTrampa = random.nextInt(50) + 1;
-                     if (precisionTrampa > personaje.getDestreza()) {
-                         System.out.println("¡Eres tomado por sorpresa por la trampa " + trampas[i].getDescripcion()
-                                  + "!\nRecibes " + trampas[i].getDanyo() + " puntos de daño...");
-                         personaje.recibirDanyo(trampas[i].getDanyo());
-                         if (personaje.getVida() <= 0) muerto = true;
-                     } else {
-                         System.out.println("¡Esquivaste la trampa " + trampas[i].getDescripcion() + "!");
-                     }
+                    if (precisionTrampa > personaje.getDestreza()) {
+                        System.out.println("¡Eres tomado por sorpresa por la trampa " + trampas[i].getDescripcion()
+                                + "!\nRecibes " + trampas[i].getDanyo() + " puntos de daño...");
+                        personaje.recibirDanyo(trampas[i].getDanyo());
+                        if (personaje.getVida() <= 0) muerto = true;
+                    } else {
+                        System.out.println("¡Esquivaste la trampa " + trampas[i].getDescripcion() + "!");
+                    }
                 }
             }
 
@@ -282,9 +287,13 @@ public class Motor {
                 salaActual.eliminarItem(itemSeleccionado.getDescripcion());
                 personaje.infoMochila();
             }
+            if (salaActual.equals(salaFinal)) victoria = true;
         }
         if (muerto) {
             System.out.println("Moriste. Fin de la partida,");
+        }
+        if (victoria) {
+            System.out.println("¡Enhorabuena! Has completado el juego");
         }
     }
 
