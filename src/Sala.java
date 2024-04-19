@@ -45,7 +45,7 @@ public class Sala {
         boolean repetido = false;
 
         for (int i = 0; i < this.items.length; i++) {
-            if (items[i].equals(item)) repetido = true;
+            if (items[i] != null && items[i].equals(item)) repetido = true;
         }
         if (!repetido) {
             int pos = 0;
@@ -73,7 +73,7 @@ public class Sala {
         boolean repetido = false;
 
         for (int i = 0; i < this.monstruos.length; i++) {
-            if (monstruos[i].equals(monstruo)) repetido = true;
+            if (monstruos[i] != null && monstruos[i].equals(monstruo)) repetido = true;
         }
         if (!repetido) {
             int pos = 0;
@@ -101,7 +101,7 @@ public class Sala {
         boolean repetido = false;
 
         for (int i = 0; i < this.trampas.length; i++) {
-            if (trampas[i].equals(trampa)) repetido = true;
+            if (trampas[i] != null && trampas[i].equals(trampa)) repetido = true;
         }
         if (!repetido) {
             int pos = 0;
@@ -134,10 +134,10 @@ public class Sala {
     public boolean hayMonstruos() {
         boolean result = false;
         int pos = 0;
-        while (monstruos[pos] == null && pos < monstruos.length) {
-            pos++;
+        while (pos < monstruos.length && !result) {
+            if (monstruos[pos] == null) pos++;
+            else result = true;
         }
-        if (monstruos[pos] != null) result = true;
         return result;
     }
 
@@ -158,6 +158,7 @@ public class Sala {
             do {
                 nombreAtacado = Utilidades.leerCadena(teclado, "Escribe el nombre del monstruo que quieres atacar:");
             } while (buscarMonstruo(nombreAtacado) == null);
+            //TODO: Recorre dos veces
             atacado = buscarMonstruo(nombreAtacado);
         }
         return atacado;
@@ -173,7 +174,9 @@ public class Sala {
     public Monstruo buscarMonstruo(String nombreMonstruo) {
         Monstruo buscado = null;
         for (int i = 0; i < this.monstruos.length; i++) {
-            if (monstruos[i].getNombre().equals(nombreMonstruo)) buscado = monstruos[i];
+            if (monstruos[i] != null) {
+                if (monstruos[i].getNombre().equals(nombreMonstruo)) buscado = monstruos[i];
+            }
         }
         return buscado;
     }
@@ -195,12 +198,17 @@ public class Sala {
      * @param nombreMonstruo
      */
     public void eliminarMonstruo(String nombreMonstruo) {
+        for (int i = 0; i < this.monstruos.length; i++) {
+            if (monstruos[i] != null && monstruos[i].getNombre().equals(nombreMonstruo)) monstruos[i] = null;
+        }
+        /*
         if (hayMonstruos()) {
             Monstruo eliminado = this.buscarMonstruo(nombreMonstruo);
             if (eliminado != null) {
                 eliminado = null;
             }
         }
+        */
     }
 
     /**
@@ -212,10 +220,10 @@ public class Sala {
     public boolean hayTrampas() {
         boolean result = false;
         int pos = 0;
-        while (trampas[pos] == null && pos < trampas.length) {
-            pos++;
+        while (pos < trampas.length && !result) {
+            if (trampas[pos] == null) pos++;
+            else result = true;
         }
-        if (trampas[pos] != null) result = true;
         return result;
     }
 
@@ -246,10 +254,10 @@ public class Sala {
     public boolean hayItems() {
         boolean result = false;
         int pos = 0;
-        while (items[pos] == null && pos < items.length) {
-            pos++;
+        while (pos < items.length && !result) {
+            if (items[pos] == null) pos++;
+            else result = true;
         }
-        if (items[pos] != null) result = true;
         return result;
     }
 
@@ -264,7 +272,7 @@ public class Sala {
     public Item buscarItem(String descripcion) {
         Item result = null;
         for (int i = 0; i < this.items.length; i++) {
-            if (items[i].getDescripcion().equals(descripcion)) result = items[i];
+            if (items[i] != null && items[i].getDescripcion().equals(descripcion)) result = items[i];
         }
         return result;
     }
@@ -309,9 +317,10 @@ public class Sala {
             System.out.println("Ítems en la sala:");
             listarItems();
             do {
+                teclado.nextLine();
                 nombreItem = Utilidades.leerCadena(teclado, "Escribe la descripción del ítem que quieres coger " +
                         "(NINGUNO para cancelar):");
-            } while (buscarItem(nombreItem) == null || nombreItem.toUpperCase().equals("NINGUNO"));
+            } while (buscarItem(nombreItem) == null && !(nombreItem.toUpperCase().equals("NINGUNO")));
             result = buscarItem(nombreItem);
         }
         return result;

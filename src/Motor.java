@@ -194,13 +194,14 @@ public class Motor {
         for (int j = 0; j < mapa[0].length; j++) {
             sb.append("=");
         }
+        sb.append("\n");
         for (int i = 0; i < mapa.length; i++) {
             sb.append("║");
             for (int j = 0; j < mapa[i].length; j++) {
-                if (mapa[i][j] != null && i != fila && j != columna) {
-                    sb.append("░");
-                } else if (i == fila && j == columna) {
-                    sb.append("@");
+                if (mapa[i][j] != null) {
+                    if (i == fila && j == columna) {
+                        sb.append("@");
+                    } else sb.append("░");
                 } else sb.append(" ");
             }
             sb.append("║\n");
@@ -210,7 +211,7 @@ public class Motor {
             sb.append("=");
         }
         sb.append("╝");
-
+        System.out.println(sb.toString());
         return sb.toString();
     }
 
@@ -240,6 +241,7 @@ public class Motor {
         int columnaActual = 0;
         boolean muerto = false;
         boolean victoria = false;
+        boolean pararObjetos = false;
         random = new Random();
         Sala salaActual = mapa[filaActual][columnaActual];
         Sala salaFinal = mapa[mapa.length - 1][mapa[0].length - 1];
@@ -282,9 +284,11 @@ public class Motor {
                 }
             }
 
-            while (salaActual.hayItems()) {
+            while (!pararObjetos) {
                 Item itemSeleccionado = salaActual.seleccionarItem(teclado);
-                salaActual.eliminarItem(itemSeleccionado.getDescripcion());
+                if (itemSeleccionado != null) {
+                    salaActual.eliminarItem(itemSeleccionado.getDescripcion());
+                } else pararObjetos = true;
                 personaje.infoMochila();
             }
             if (salaActual.equals(salaFinal)) victoria = true;
@@ -316,27 +320,43 @@ public class Motor {
             String movimiento = Utilidades.leerMovimiento(teclado, "Introduce el movimiento (N, E, S, O):");
             switch (movimiento) {
                 case "N":
-                    if (mapa[salaActual.getFila() - 1][salaActual.getColumna()] != null) {
-                        movimientoValido = true;
-                        salaDestino = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
+                    if (salaActual.getFila() - 1 >= mapa[0].length) {
+                        if (mapa[salaActual.getFila() - 1][salaActual.getColumna()] != null) {
+                            movimientoValido = true;
+                        }
+                        if (movimientoValido) {
+                            salaDestino = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
+                        } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
                 case "E":
-                    if (mapa[salaActual.getFila()][salaActual.getColumna() + 1] != null) {
-                        movimientoValido = true;
-                        salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() + 1];
+                    if (salaActual.getColumna() + 1 < mapa.length) {
+                        if (mapa[salaActual.getFila()][salaActual.getColumna() + 1] != null) {
+                            movimientoValido = true;
+                        }
+                        if (movimientoValido) {
+                            salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() + 1];
+                        } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
                 case "S":
-                    if (mapa[salaActual.getFila() + 1][salaActual.getColumna()] != null) {
-                        movimientoValido = true;
-                        salaDestino = mapa[salaActual.getFila() + 1][salaActual.getColumna()];
+                    if (salaActual.getFila() + 1 < mapa[0].length) {
+                        if (mapa[salaActual.getFila() + 1][salaActual.getColumna()] != null) {
+                            movimientoValido = true;
+                        }
+                        if (movimientoValido) {
+                            salaDestino = mapa[salaActual.getFila() + 1][salaActual.getColumna()];
+                        } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
                 case "O":
-                    if (mapa[salaActual.getFila()][salaActual.getColumna() - 1] != null) {
-                        movimientoValido = true;
-                        salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() - 1];
+                    if (salaActual.getColumna() - 1 >= mapa.length) {
+                        if (mapa[salaActual.getFila()][salaActual.getColumna() - 1] != null) {
+                            movimientoValido = true;
+                        }
+                        if (movimientoValido) {
+                            salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() - 1];
+                        } else System.out.println("Camino cerrado por esa dirección.");
                     }
             }
         } while (!movimientoValido);

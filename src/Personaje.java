@@ -225,12 +225,17 @@ public class Personaje {
      */
     public String infoMochila() {
         int pos = 0;
-        StringBuilder sb = new StringBuilder();
-        sb.append("Mochila de ").append(this.nombre).append(":");
-        sb.append("\n");
-        while (items[pos] != null && pos < items.length) {
-            sb.append(items[pos].toString());
+        StringBuilder sb = null;
+        String result = "";
+        if (pos < items.length) {
+            sb = new StringBuilder();
+            sb.append("Mochila de ").append(this.nombre).append(":");
+            sb.append("\n");
+            while (pos < items.length && items[pos] != null) {
+                sb.append(items[pos].toString());
+            }
+            result = sb.toString();
         }
-        return sb.toString();
+        return result;
     }
 }

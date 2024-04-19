@@ -23,12 +23,15 @@ public class Aventuras {
         int maxMonstruos = Integer.parseInt(args[3]);
         int maxTrampas = Integer.parseInt(args[4]);
         String ficheroSalas = args[5];
-        String ficheroMonstruos = args[6];
-        String ficheroTrampas = args[7];
-        String ficheroPuntuaciones = args[8];
+        String ficheroItems = args[6];
+        String ficheroMonstruos = args[7];
+        String ficheroTrampas = args[8];
+        String ficheroPuntuaciones = args[9];
         Scanner teclado = new Scanner(System.in);
         Personaje jugador = Personaje.crearPersonaje(teclado);
-        Motor engine = new Motor(5, 5, )
+        Motor engine = new Motor(5, 5, maxItems, maxMonstruos, maxTrampas);
+        engine.iniciar(ficheroSalas, ficheroItems, ficheroMonstruos, ficheroTrampas);
+        engine.jugar(teclado, jugador, new Random());
     }
 
     /**
