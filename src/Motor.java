@@ -248,21 +248,24 @@ public class Motor {
         while (!muerto && !victoria) {
             mostrarMapa(filaActual, columnaActual);
             System.out.println(salaActual.getDescripcion());
-            seleccionarMovimiento(teclado, salaActual);
+            Sala destino = seleccionarMovimiento(teclado, salaActual);
+            salaActual = destino;
             filaActual = salaActual.getFila();
             columnaActual = salaActual.getColumna();
 
             if (salaActual.hayTrampas()) {
                 Trampa[] trampas = salaActual.getTrampas();
                 for (int i = 0; i < trampas.length; i++) {
-                    int precisionTrampa = random.nextInt(50) + 1;
-                    if (precisionTrampa > personaje.getDestreza()) {
-                        System.out.println("¡Eres tomado por sorpresa por la trampa " + trampas[i].getDescripcion()
-                                + "!\nRecibes " + trampas[i].getDanyo() + " puntos de daño...");
-                        personaje.recibirDanyo(trampas[i].getDanyo());
-                        if (personaje.getVida() <= 0) muerto = true;
-                    } else {
-                        System.out.println("¡Esquivaste la trampa " + trampas[i].getDescripcion() + "!");
+                    if (trampas[i] != null) {
+                        int precisionTrampa = random.nextInt(50) + 1;
+                        if (precisionTrampa > personaje.getDestreza()) {
+                            System.out.println("¡Eres tomado por sorpresa por la trampa " + trampas[i].getDescripcion()
+                                    + "!\nRecibes " + trampas[i].getDanyo() + " puntos de daño...");
+                            personaje.recibirDanyo(trampas[i].getDanyo());
+                            if (personaje.getVida() <= 0) muerto = true;
+                        } else {
+                            System.out.println("¡Esquivaste la trampa " + trampas[i].getDescripcion() + "!");
+                        }
                     }
                 }
             }
@@ -283,14 +286,14 @@ public class Motor {
                     salaActual.eliminarMonstruo(monstruoAtacado.getNombre());
                 }
             }
-
             while (!pararObjetos) {
                 Item itemSeleccionado = salaActual.seleccionarItem(teclado);
                 if (itemSeleccionado != null) {
                     salaActual.eliminarItem(itemSeleccionado.getDescripcion());
                 } else pararObjetos = true;
-                personaje.infoMochila();
+                System.out.println(personaje.infoMochila());
             }
+            pararObjetos = false;
             if (salaActual.equals(salaFinal)) victoria = true;
         }
         if (muerto) {
@@ -320,42 +323,46 @@ public class Motor {
             String movimiento = Utilidades.leerMovimiento(teclado, "Introduce el movimiento (N, E, S, O):");
             switch (movimiento) {
                 case "N":
-                    if (salaActual.getFila() - 1 >= mapa[0].length) {
+                    if (salaActual.getFila() - 1 >= 0 && salaActual.getFila() - 1 < mapa.length) {
                         if (mapa[salaActual.getFila() - 1][salaActual.getColumna()] != null) {
                             movimientoValido = true;
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
+                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
                 case "E":
-                    if (salaActual.getColumna() + 1 < mapa.length) {
+                    if (salaActual.getColumna() + 1 >= 0 && salaActual.getColumna() + 1 < mapa[0].length) {
                         if (mapa[salaActual.getFila()][salaActual.getColumna() + 1] != null) {
                             movimientoValido = true;
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() + 1];
+                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
                 case "S":
-                    if (salaActual.getFila() + 1 < mapa[0].length) {
+                    if (salaActual.getFila() + 1 >= 0 && salaActual.getFila() + 1 < mapa.length) {
                         if (mapa[salaActual.getFila() + 1][salaActual.getColumna()] != null) {
                             movimientoValido = true;
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila() + 1][salaActual.getColumna()];
+                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
                 case "O":
-                    if (salaActual.getColumna() - 1 >= mapa.length) {
+                    if (salaActual.getColumna() - 1 >= 0 && salaActual.getColumna() - 1 < mapa[0].length) {
                         if (mapa[salaActual.getFila()][salaActual.getColumna() - 1] != null) {
                             movimientoValido = true;
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() - 1];
+                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
             }

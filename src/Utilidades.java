@@ -53,7 +53,7 @@ public class Utilidades {
     }
 
     private static boolean esAlfabetico(String s) {
-        String valido = "qwertyuiopñlkjhgfdsazxcvbnmQWERTYUIOPÑLKJHGFDSAZXCVBNMáéíóúÁÉÍÓÚ";
+        String valido = " qwertyuiopñlkjhgfdsazxcvbnmQWERTYUIOPÑLKJHGFDSAZXCVBNMáéíóúÁÉÍÓÚ";
         boolean alfabetico = true;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
@@ -69,7 +69,7 @@ public class Utilidades {
             System.out.println(mensaje);
             movimiento = teclado.nextLine();
             if (movimiento.equals("N".toUpperCase()) || movimiento.equals("S".toUpperCase())
-            || movimiento.equals("W".toUpperCase()) || movimiento.equals("E".toUpperCase())) {
+            || movimiento.equals("O".toUpperCase()) || movimiento.equals("E".toUpperCase())) {
                 correcto = true;
             }
         }

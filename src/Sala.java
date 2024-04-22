@@ -312,15 +312,23 @@ public class Sala {
      */
     public Item seleccionarItem(Scanner teclado) {
         Item result = null;
-        String nombreItem;
+        String nombreItem = "";
         if (hayItems()) {
             System.out.println("Ítems en la sala:");
             listarItems();
+
+            while (buscarItem(nombreItem) == null && !(nombreItem.toUpperCase().equals("NINGUNO"))) {
+                nombreItem = Utilidades.leerCadena(teclado, "Escribe la descripción del ítem que quieres coger " +
+                        "(NINGUNO para cancelar):");
+            }
+            /*
             do {
                 teclado.nextLine();
                 nombreItem = Utilidades.leerCadena(teclado, "Escribe la descripción del ítem que quieres coger " +
                         "(NINGUNO para cancelar):");
             } while (buscarItem(nombreItem) == null && !(nombreItem.toUpperCase().equals("NINGUNO")));
+            */
+
             result = buscarItem(nombreItem);
         }
         return result;
@@ -344,11 +352,8 @@ public class Sala {
      * @param descripcion
      */
     public void eliminarItem(String descripcion) {
-        if (hayItems()) {
-            Item eliminado = this.buscarItem(descripcion);
-            if (eliminado != null) {
-                eliminado = null;
-            }
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null && items[i].getDescripcion().equals(descripcion)) items[i] = null;
         }
     }
 }
