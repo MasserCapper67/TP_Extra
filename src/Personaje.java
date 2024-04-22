@@ -156,13 +156,12 @@ public class Personaje {
      */
     public boolean anyadirItem(Item item) {
         boolean result = false;
-        if (this.getPesoMochila() + item.getPeso() <= maxPesoPorPersonaje) {
-            for (int i = 0; i < this.getItems().length; i++) {
-                if (this.items[i] == null) {
-                    this.items[i] = item;
-                    result = true;
-                }
-            }
+        int pos = 0;
+        while (pos < items.length && !result) {
+            if (items[pos] == null) {
+                items[pos] = item;
+                result = true;
+            } else pos++;
         }
         return result;
     }
@@ -187,11 +186,9 @@ public class Personaje {
      * @return
      */
     public double getPesoMochila() {
-        int pos = 0;
         double result = 0.0;
-        while (items[pos] != null && pos < items.length) {
-            result += items[pos].getPeso();
-            pos++;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) result += items[i].getPeso();
         }
         return result;
     }
@@ -203,11 +200,9 @@ public class Personaje {
      * @return
      */
     public double getValorMochila() {
-        int pos = 0;
         double result = 0.0;
-        while (items[pos] != null && pos < items.length) {
-            result += items[pos].getValor();
-            pos++;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) result += items[i].getValor();
         }
         return result;
     }
@@ -224,18 +219,16 @@ public class Personaje {
      * @return
      */
     public String infoMochila() {
-        int pos = 0;
         StringBuilder sb = null;
         String result = "";
-        if (pos < items.length) {
-            sb = new StringBuilder();
-            sb.append("Mochila de ").append(this.nombre).append(":");
-            sb.append("\n");
-            while (pos < items.length && items[pos] != null) {
-                sb.append(items[pos].toString());
-            }
-            result = sb.toString();
+        sb = new StringBuilder();
+        sb.append("Mochila de ").append(this.nombre).append(":");
+        sb.append("\n");
+
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) sb.append(items[i].toString());
         }
+        result = sb.toString();
         return result;
     }
 }

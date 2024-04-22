@@ -289,6 +289,7 @@ public class Motor {
             while (!pararObjetos) {
                 Item itemSeleccionado = salaActual.seleccionarItem(teclado);
                 if (itemSeleccionado != null) {
+                    personaje.anyadirItem(itemSeleccionado);
                     salaActual.eliminarItem(itemSeleccionado.getDescripcion());
                 } else pararObjetos = true;
                 System.out.println(personaje.infoMochila());
