@@ -321,14 +321,6 @@ public class Sala {
                 nombreItem = Utilidades.leerCadena(teclado, "Escribe la descripción del ítem que quieres coger " +
                         "(NINGUNO para cancelar):");
             }
-            /*
-            do {
-                teclado.nextLine();
-                nombreItem = Utilidades.leerCadena(teclado, "Escribe la descripción del ítem que quieres coger " +
-                        "(NINGUNO para cancelar):");
-            } while (buscarItem(nombreItem) == null && !(nombreItem.toUpperCase().equals("NINGUNO")));
-            */
-
             result = buscarItem(nombreItem);
         }
         return result;

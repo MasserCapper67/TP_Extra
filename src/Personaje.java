@@ -157,11 +157,13 @@ public class Personaje {
     public boolean anyadirItem(Item item) {
         boolean result = false;
         int pos = 0;
-        while (pos < items.length && !result) {
-            if (items[pos] == null) {
-                items[pos] = item;
-                result = true;
-            } else pos++;
+        if (item.getPeso() + this.getPesoMochila() <= maxPesoPorPersonaje) {
+            while (pos < items.length && !result) {
+                if (items[pos] == null) {
+                    items[pos] = item;
+                    result = true;
+                } else pos++;
+            }
         }
         return result;
     }
@@ -226,7 +228,7 @@ public class Personaje {
         sb.append("\n");
 
         for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) sb.append(items[i].toString());
+            if (items[i] != null) sb.append(items[i].toString()).append("\n");
         }
         result = sb.toString();
         return result;

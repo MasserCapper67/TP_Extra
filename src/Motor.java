@@ -194,6 +194,7 @@ public class Motor {
         for (int j = 0; j < mapa[0].length; j++) {
             sb.append("=");
         }
+        sb.append("╗");
         sb.append("\n");
         for (int i = 0; i < mapa.length; i++) {
             sb.append("║");
@@ -245,13 +246,10 @@ public class Motor {
         random = new Random();
         Sala salaActual = mapa[filaActual][columnaActual];
         Sala salaFinal = mapa[mapa.length - 1][mapa[0].length - 1];
+
         while (!muerto && !victoria) {
             mostrarMapa(filaActual, columnaActual);
             System.out.println(salaActual.getDescripcion());
-            Sala destino = seleccionarMovimiento(teclado, salaActual);
-            salaActual = destino;
-            filaActual = salaActual.getFila();
-            columnaActual = salaActual.getColumna();
 
             if (salaActual.hayTrampas()) {
                 Trampa[] trampas = salaActual.getTrampas();
@@ -286,22 +284,39 @@ public class Motor {
                     salaActual.eliminarMonstruo(monstruoAtacado.getNombre());
                 }
             }
-            while (!pararObjetos) {
+
+            while (!pararObjetos && !muerto) {
                 Item itemSeleccionado = salaActual.seleccionarItem(teclado);
                 if (itemSeleccionado != null) {
-                    personaje.anyadirItem(itemSeleccionado);
-                    salaActual.eliminarItem(itemSeleccionado.getDescripcion());
+                    if (!personaje.anyadirItem(itemSeleccionado)) {
+                        System.out.println("Peso máximo alcanzado. No puedes recoger más objetos.");
+                    } else {
+                        salaActual.eliminarItem(itemSeleccionado.getDescripcion());
+                    }
                 } else pararObjetos = true;
-                System.out.println(personaje.infoMochila());
+                if (pararObjetos) System.out.println(personaje.infoMochila());
             }
             pararObjetos = false;
-            if (salaActual.equals(salaFinal)) victoria = true;
+
+            if (salaActual == salaFinal) victoria = true;
+
+            if (!muerto && !victoria) {
+                mostrarMapa(filaActual, columnaActual);
+                salaActual = seleccionarMovimiento(teclado, salaActual);
+                filaActual = salaActual.getFila();
+                columnaActual = salaActual.getColumna();
+            }
         }
+
         if (muerto) {
             System.out.println("Moriste. Fin de la partida,");
+            System.out.println("Valor total de los objetos de la mochila de " + personaje.getNombre() + ": " +
+                    personaje.getValorMochila());
         }
         if (victoria) {
             System.out.println("¡Enhorabuena! Has completado el juego");
+            System.out.println("Valor total de los objetos de la mochila de " + personaje.getNombre() + ": " +
+                    personaje.getValorMochila());
         }
     }
 

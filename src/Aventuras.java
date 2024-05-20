@@ -10,9 +10,7 @@ public class Aventuras {
 
     /**
      * Main desde donde ejecutar el programa
-     * TODO instanciación e inicialización de objetos para la ejecución,
-     *  ejecución del motor, muestra de puntuaciones y lectura de instrucciones
-     *  por teclado para jugar. Finalmente guardar la puntuación
+     *
      *
      * @param args
      */
@@ -29,9 +27,11 @@ public class Aventuras {
         String ficheroPuntuaciones = args[9];
         Scanner teclado = new Scanner(System.in);
         Personaje jugador = Personaje.crearPersonaje(teclado);
-        Motor engine = new Motor(5, 5, maxItems, maxMonstruos, maxTrampas);
+        Motor engine = new Motor(filas, columnas, maxItems, maxMonstruos, maxTrampas);
         engine.iniciar(ficheroSalas, ficheroItems, ficheroMonstruos, ficheroTrampas);
         engine.jugar(teclado, jugador, new Random());
+        guardarPuntuacion(ficheroPuntuaciones, jugador);
+        mostrarPuntuaciones(ficheroPuntuaciones);
     }
 
     /**
@@ -45,8 +45,8 @@ public class Aventuras {
     private static void guardarPuntuacion(String ficheroPuntuaciones, Personaje jugador) {
         PrintWriter printWriter = null;
         try {
-            printWriter = new PrintWriter(new FileWriter(ficheroPuntuaciones));
-            printWriter.print(LocalDate.now() + "\t" + jugador.toString() + ", " +
+            printWriter = new PrintWriter(new FileWriter(ficheroPuntuaciones, true));
+            printWriter.println(LocalDate.now() + "\t" + jugador.toString() + ", " +
                     jugador.getValorMochila() + " monedas");
         } catch (FileNotFoundException e) {
             System.err.println("Fichero de puntuacion no encontrado.");

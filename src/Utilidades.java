@@ -38,17 +38,21 @@ public class Utilidades {
      */
     // Solicita un número repetidamente hasta que se introduzca uno correcto (dentro de los límites)
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
-        teclado = new Scanner(System.in);
         int result = 0;
-        do {
+        boolean valid = false;
+
+        while (!valid) {
             System.out.println(mensaje);
             try {
                 result = teclado.nextInt();
+                if (result >= minimo && result <= maximo) {
+                    valid = true;
+                } else System.out.println("Introduzca un valor dentro de los límites (" + minimo + "-" + maximo + ").");
             } catch (InputMismatchException e) {
-                System.out.println("Introduce un valor numérico.");
-                leerNumero(teclado, mensaje, minimo, maximo);
+                System.out.println("Introduzca un valor numérico.");
+                teclado.next();
             }
-        } while (result < minimo || result > maximo);
+        }
         return result;
     }
 
