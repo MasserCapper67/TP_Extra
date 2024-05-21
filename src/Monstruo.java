@@ -2,18 +2,30 @@
  * Clase Monstruo
  */
 public class Monstruo {
+    /**
+     * Parámetro entero que contiene la cantidad de vida del monstruo
+     */
     private int vida;
+    /**
+     * Parámetro inalterable entero que contiene el ataque del monstruo
+     */
     private final int ataque;
+    /**
+     * Parámetro inslaterable entero que contiene la defensa del monstruo
+     */
     private final int defensa;
+    /**
+     * Parámetro inalterable que contiene el nombre del monstruo
+     */
     private final String nombre;
 
     /**
      * Constructor clase Monstruo
      *
-     * @param nombre
-     * @param vida
-     * @param ataque
-     * @param defensa
+     * @param nombre nombre del monstruo
+     * @param vida cantidad de vida del monstruo
+     * @param ataque cantidad de ataque del monstruo
+     * @param defensa cantidad de defensa del monsturo
      */
     public Monstruo(String nombre, int vida, int ataque, int defensa) {
         this.vida = vida;
@@ -23,7 +35,7 @@ public class Monstruo {
     }
 
     /**
-     * Método getVida
+     * Método getVida: Devuelve la cantidad de vida del monstruo
      *
      * @return int vida
      */
@@ -32,7 +44,7 @@ public class Monstruo {
     }
 
     /**
-     * Método getAtaque
+     * Método getAtaque: Devuelve la cantidad de ataque del monstruo
      *
      * @return int ataque
      */
@@ -41,7 +53,7 @@ public class Monstruo {
     }
 
     /**
-     * Método getDefensa
+     * Método getDefensa: Devuelve la cantidad de defensa del monstruo
      *
      * @return int defensa
      */
@@ -50,7 +62,7 @@ public class Monstruo {
     }
 
     /**
-     * Método getNombre
+     * Método getNombre: Devuelve el nombre del monstruo
      *
      * @return String nombre
      */
@@ -60,10 +72,10 @@ public class Monstruo {
 
     /**
      * Método recibirDanyo para calcular la vida restante
-     * actualizar la vida restante del monstruo despues de un ataque, siempre que el
+     * Actualiza la vida restante del monstruo despues de un ataque, siempre que el
      * valor de ataque sea positivo
      *
-     * @param ataque
+     * @param ataque Valor entero que contiene la cantidad de ataque que recibirá el mosntruo
      */
     public void recibirDanyo(int ataque) {
         if (ataque > 0) {
@@ -75,10 +87,9 @@ public class Monstruo {
 
     /**
      * Método sobreescrito para devolver la información de un monstruo
-     * Método para devolver un String con la información del monstruo en el formato
-     * descrito en la memoria de la práctica P.e: "[ Trasgo (V: 20, A: 5, D: 2) ]"
+     * Devuelve un String con la información del monstruo en el siguiente formato: "[ Trasgo (V: 20, A: 5, D: 2) ]"
      *
-     * @return
+     * @return String
      */
     @Override
     public String toString() {
@@ -87,10 +98,10 @@ public class Monstruo {
 
     /**
      * Método que sobreescribe el comportamiento de equals
-     * Método para comparar si el objeto pasado como parámetro es igual a este,
-     * hay que comparar los parámetros internos del objeto (nombre, vida, ataque, defensa)
+     * Compara si el objeto pasado como parámetro es igual a este, en función delos parámetros internos
+     * del objeto (nombre, vida, ataque, defensa)
      *
-     * @param obj
+     * @param obj Objeto de la clase Object
      * @return True en caso de ser igual, false en otro caso
      */
     @Override
