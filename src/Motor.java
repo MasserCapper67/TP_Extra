@@ -80,7 +80,9 @@ public class Motor {
                 int valor = Integer.parseInt(campos[4]);
 
                 Item item = new Item(descripcion, peso, valor);
-                mapa[campo1][campo2].agregarItem(item);
+                if (!(mapa[campo1][campo2].agregarItem(item))) {
+                    System.out.println("Error al agregar item " + item.getDescripcion());
+                }
             }
         } catch (FileNotFoundException e) {
             System.err.println("Fichero de ítems no encontrado");
@@ -112,7 +114,9 @@ public class Motor {
                 int defensa = Integer.parseInt(campos[5]);
 
                 Monstruo monstruo = new Monstruo(nombre, vida, ataque, defensa);
-                mapa[campo1][campo2].agregarMonstruo(monstruo);
+                if (!(mapa[campo1][campo2].agregarMonstruo(monstruo))) {
+                    System.out.println("Error al agregar el monstruo " + monstruo.getNombre());
+                }
             }
         } catch (FileNotFoundException e) {
             System.err.println("Fichero de monstruos no encontrado.");
@@ -142,7 +146,9 @@ public class Motor {
                 int danyo = Integer.parseInt(campos[3]);
 
                 Trampa trampa = new Trampa(descripcion, danyo);
-                mapa[campo1][campo2].agregarTrampa(trampa);
+                 if (!(mapa[campo1][campo2].agregarTrampa(trampa))) {
+                     System.out.println("Error al insertar la trampa " + trampa.getDescripcion());
+                 }
             }
         } catch (FileNotFoundException e) {
             System.err.println("Fichero de trampas no encontrado.");

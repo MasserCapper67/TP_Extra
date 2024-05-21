@@ -2,7 +2,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Clase Utilidades
+ * Clase Utilidades: Clase que contiene métodos estáticos relacionados con la lectura de caracteres por teclado o el
+ * manejo de estos
+ *
+ * @author Álvaro Bardají Robles
+ * @author Sergio Arias
+ * @version 1.0
  */
 public class Utilidades {
 
@@ -10,9 +15,9 @@ public class Utilidades {
      * Método estático leerCadena para leer un cadena de carecteres por pantalla
      * leer por pantalla y comprobar que es una cadena de caracteres válida.
      *
-     * @param teclado
-     * @param s
-     * @return
+     * @param teclado objeto de la clase Scanner
+     * @param s mensaje que se imprimirá por terminal
+     * @return String
      */
     public static String leerCadena(Scanner teclado, String s) {
         teclado = new Scanner(System.in);
@@ -30,13 +35,12 @@ public class Utilidades {
      * leer por pantalla y comprobar que es un número valido. Solicita un número repetidamente hasta que se
      * introduzca uno correcto (dentro de los límites)
      *
-     * @param teclado
-     * @param mensaje
-     * @param minimo
-     * @param maximo
-     * @return
+     * @param teclado objeto de la clase Scanner
+     * @param mensaje mensaje que se imprimirá por terminal
+     * @param minimo valor mínimo que podrá tomar el número introducido dentro de ciertos límites
+     * @param maximo valor máximo que podrá tomar el número introducido dentro de ciertos límites
+     * @return int
      */
-    // Solicita un número repetidamente hasta que se introduzca uno correcto (dentro de los límites)
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
         int result = 0;
         boolean valid = false;
@@ -56,6 +60,12 @@ public class Utilidades {
         return result;
     }
 
+    /**
+     * Método que en base a un String ingresado por el usuario comprueba si únicamente contiene caracteres alfabéticos
+     *
+     * @param s String del que se realizará la comprobación
+     * @return boolean
+     */
     private static boolean esAlfabetico(String s) {
         String valido = " qwertyuiopñlkjhgfdsazxcvbnmQWERTYUIOPÑLKJHGFDSAZXCVBNMáéíóúÁÉÍÓÚ";
         boolean alfabetico = true;
@@ -66,6 +76,15 @@ public class Utilidades {
         return alfabetico;
     }
 
+    /**
+     * Método que permite al usuario interactuar con su posición actual en el mapa. Únicamente se podrá introducir
+     * un carácter atendiendo a los 4 posibles movimientos: N --> arriba / norte; S --> abajo / sur;
+     * O --> izquierda / oeste; E --> derecha / este.
+     *
+     * @param teclado objeto de la clase Scanner
+     * @param mensaje mensaje que se imprimirá por terminal
+     * @return String
+     */
     public static String leerMovimiento(Scanner teclado, String mensaje) {
         String movimiento = null;
         boolean correcto = false;
