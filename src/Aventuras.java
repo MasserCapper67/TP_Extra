@@ -12,7 +12,7 @@ public class Aventuras {
      * Main desde donde ejecutar el programa
      *
      *
-     * @param args
+     * @param args argumentos que determinan los parámetros de gestión de salas del juego
      */
     public static void main(String[] args) {
         int filas = Integer.parseInt(args[0]);
@@ -36,11 +36,10 @@ public class Aventuras {
 
     /**
      * Metodo guardarPuntuación en fichero
-     * abrir y guardar en el fichero pasado como parametro el personaje
-     * siguiendo el formato descrito en la memoria de la práctica
+     * Se abre y se guarda en el fichero pasado como parametro el personaje
      *
-     * @param ficheroPuntuaciones
-     * @param jugador
+     * @param ficheroPuntuaciones Nombre del fichero que contiene las puntuaciones de las partidas
+     * @param jugador Personaje gestionado en la partida
      */
     private static void guardarPuntuacion(String ficheroPuntuaciones, Personaje jugador) {
         PrintWriter printWriter = null;
@@ -63,12 +62,12 @@ public class Aventuras {
 
     /**
      * Metodo mostrarPuntuaciones del fichero puntuaciones
-     * Mostrar por pantalla todas las puntuaciones almacenadas en el fichero
+     * Muestra por pantalla todas las puntuaciones almacenadas en el fichero
      * pasado como parámetro. P.e:
      * "Puntuaciones:
      * 2024-04-04	{ Raul (V: -4, A: 50, D: 40, X: 20) }, 420.0 monedas"
      *
-     * @param ficheroPuntuaciones
+     * @param ficheroPuntuaciones Nombre del fichero que contiene las puntuaciones de las partidas
      */
     private static void mostrarPuntuaciones(String ficheroPuntuaciones) {
         System.out.println("Puntuaciones:");

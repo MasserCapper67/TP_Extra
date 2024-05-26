@@ -4,20 +4,28 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * Clase Motor
+ * Clase Motor: Contiene las mecánicas y el bucle mediante los que se desarrollará el juego
  */
 public class Motor {
+    /**
+     * Matriz de salas que en su conjunto conforma el mapa del juego
+     */
     Sala[][] mapa;
+    /**
+     * maxItemsPorSala: Número máximo de ítems que puede contener una sala
+     * maxMonstruosPorSala: Número máximo de monstruos que puede contener una sala
+     * maxTrampasPorSala: Número máximo de trampas que puede contener una sala
+     */
     private final int maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala;
 
     /**
      * Constructor Clase Motor
      *
-     * @param filas
-     * @param columnas
-     * @param maxItemsPorSala
-     * @param maxMonstruosPorSala
-     * @param maxTrampasPorSalas
+     * @param filas Número de filas que tendrá la matriz de salas
+     * @param columnas Número de columnas que tendrá la matrtiz de salas
+     * @param maxItemsPorSala Número máximo de ítems que puede contener una sala
+     * @param maxMonstruosPorSala Número máximo de monstruos que puede contener una sala
+     * @param maxTrampasPorSalas Número máximo de trampas que puede contener una sala
      */
     public Motor(int filas, int columnas, int maxItemsPorSala, int maxMonstruosPorSala, int maxTrampasPorSalas) {
         this.mapa = new Sala[filas][columnas];
@@ -27,12 +35,12 @@ public class Motor {
     }
 
     /**
-     * Clase cargarMapa para construir la matriz de mapa a traves del fichero
-     * leer los datos del fichero de mapa pasado por parametro y generar una matriz Sala[][]
-     * con dimension Sala[fila][columna] e inicializar la sala con los valores con la descripción del fichero
+     * Clase cargarMapa para construir la matriz de mapa a traves del fichero.
+     * Se leen los datos del fichero de mapa pasado por parametro y se genra una matriz Sala[][]
+     * con dimension Sala[fila][columna] y se inicializa la sala con los valores con la descripción del fichero
      * y los parámetros de maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala.
      *
-     * @param ficheroMapa
+     * @param ficheroMapa nombre del fichero que contiene la información del mapa
      * @return sala generada
      */
     Sala[][] cargarMapa(String ficheroMapa) {
@@ -58,11 +66,10 @@ public class Motor {
     }
 
     /**
-     * Metodo cargarItems para agregar los items del fichero en el mapa
-     * Método para leer un fichero de items pasado por parámetro y según
-     * la fila y columna introducir el item en la sala.
+     * Metodo cargarItems para agregar los items del fichero en el mapa.
+     * Se lee un fichero de items pasado por parámetro y según la fila y columna se introduce el ítem en la sala.
      *
-     * @param ficheroItems
+     * @param ficheroItems Nombre del fichero que contiene la información de ítems
      */
     private void cargarItems(String ficheroItems) {
         BufferedReader bufferedReader = null;
@@ -92,11 +99,11 @@ public class Motor {
     }
 
     /**
-     * Método cargarMonstruos para agregar los monstruos del fichero en el mapa
-     * Método para leer un fichero de Monstruos pasado por parámetro y según
-     * la fila y columna introducir el monstruo en la sala.
+     * Método cargarMonstruos para agregar los monstruos del fichero en el mapa.
+     * Se lee un fichero de Monstruos pasado por parámetro y según la fila y columna se
+     * introduce el monstruo en la sala.
      *
-     * @param ficheroMonstruos
+     * @param ficheroMonstruos Fichero que contiene la información de los monstruos
      */
     private void cargarMonstruos(String ficheroMonstruos) {
         BufferedReader bufferedReader = null;
@@ -126,11 +133,10 @@ public class Motor {
     }
 
     /**
-     * Método cargarTrampas para agregar las trampas del fichero en el mapa
-     * Método para leer un fichero de trampas pasado por parámetro y según
-     * la fila y columna introducir la trampa en la sala.
+     * Método cargarTrampas para agregar las trampas del fichero en el mapa.
+     * Se lee un fichero de trampas pasado por parámetro y según la fila y columna se introduce la trampa en la sala.
      *
-     * @param ficheroTrampas
+     * @param ficheroTrampas Nombre del fichero que contiene la información de las trampas
      */
     private void cargarTrampas(String ficheroTrampas) {
         BufferedReader bufferedReader = null;
@@ -159,12 +165,12 @@ public class Motor {
 
     /**
      * Metodo iniciar, para preparar el mapa
-     * instanciación del parametro mapa y carga de datos con los ficheros pasados como parámetros
+     * Se instancia el parámetro mapa y se cargan los datos con los ficheros pasados como parámetros
      *
-     * @param ficheroMapa
-     * @param ficheroItems
-     * @param ficheroMonstruos
-     * @param ficheroTrampas
+     * @param ficheroMapa Nombre del fichero con la información de las salas del mapa
+     * @param ficheroItems Nombre del fichero con la información de los ítems
+     * @param ficheroMonstruos Nombre del fichero con la información de los monstruos
+     * @param ficheroTrampas Nombre del fichero con la información de las trampas
      */
     public void iniciar(String ficheroMapa, String ficheroItems, String ficheroMonstruos, String ficheroTrampas) {
         cargarMapa(ficheroMapa);
@@ -175,24 +181,23 @@ public class Motor {
 
     /**
      * Método getSala para obtener una sala concreta del mapa
-     * devolver una Sala concreta del mapa
      *
-     * @param fila
-     * @param columna
-     * @return
+     * @param fila fila del mapa que se desea buscar
+     * @param columna columna del mapa que se desea buscar
+     * @return Sala (del mapa)
      */
     public Sala getSala(int fila, int columna) {
         return mapa[fila][columna];
     }
 
     /**
-     * Método mostrarMapa para transformar el mapa en String
-     * construir un String con la información contenida en el mapa
+     * Método mostrarMapa para transformar el mapa en String.
+     * Construye un String con la información contenida en el mapa
      * respetando el formato que aparece en la memoria de la práctica
      *
-     * @param fila
-     * @param columna
-     * @return
+     * @param fila fila de la matriz Mapa
+     * @param columna columna de la matriz Mapa
+     * @return String con el trazado del mapa
      */
     public String mostrarMapa(int fila, int columna) {
         StringBuilder sb = new StringBuilder();
@@ -224,24 +229,25 @@ public class Motor {
 
     /**
      * Método jugar para empezar a jugar con el personaje
-     * método complejo en el que hay que seguir la siguiente ejecución:
-     * 1. mostrar el mapa por pantalla
-     * 2. Obtener la sala actual y mientras el personaje tenga vida y no haya llegado a la casilla final
-     * 3. Durante una jugada mostrar la descripcion de la sala actual
-     * 4. Comprobar si hay monstruos en la sala y si es así entrar en combate
+     * Método que sigue la siguiente ejecución:
+     * 1. Se muestra el mapa por pantalla
+     * 2. Se obtiene la sala actual y mientras el personaje tenga vida y no haya llegado a la casilla final
+     * 3. Durante una jugada se muestra la descripción de la sala actual
+     * 4. Se comprueba si hay monstruos en la sala y si es así entrar en combate
      * 4.a El combate acaba cuando la vida del monstruo o la vida del personaje llega a 0
-     * 4.b cada turno en el combate el personaje ataca al monstruo y restamos su vida
+     * 4.b Cada turno en el combate el personaje ataca al monstruo y restamos su vida
      * 4.c Si la vida no llega a 0 el monstruo hace daño al personaje
      * 5. Las salas pueden tener trampas
-     * 5.a Si hay trampa hay que comprobar si un valor aleatorio entre 1 y 50 es inferior a la destreza del personaje, si es asi esquiva la trampa
+     * 5.a Si hay trampa se comprueba si un valor aleatorio entre 1 y 50 es inferior a la destreza del personaje,
+     * si es asi esquiva la trampa
      * 5.b Si no esquiva la trampa el personaje recibe daño
-     * 5.c al igual que en combate hay que tener en cuenta si la vida del personaje lleva a 0
-     * 6. Por último puede haber items en la sala, en cuyo caso habrá que preguntar al usuario qué ítems quiere guardarse (o NINGUNO para terminar)
-     * ¡IMPORTANTE! se debe mostrar por pantalla avisos para cada opción dando feedback al usuario de todo lo que ocurra (consultar enunciado)
+     * 5.c Al igual que en combate se tiene en cuenta si la vida del personaje lleva a 0
+     * 6. Por último puede haber items en la sala, en cuyo caso se pregunta al usuario qué ítems quiere guardarse
+     * (o NINGUNO para terminar)
      *
-     * @param teclado
-     * @param personaje
-     * @param random
+     * @param teclado Objeto de la clase Scanner
+     * @param personaje Personaje que manejará el juego
+     * @param random Valor aletorio para determinar si el personaje recibe o no daño al interactuar con una trampa
      */
     public void jugar(Scanner teclado, Personaje personaje, Random random) {
         int filaActual = 0;
@@ -328,14 +334,11 @@ public class Motor {
 
     /**
      * Metodo seleccionarMovimiento para establecer las acciones que tome el jugador con su personaje
-     * El desplazamiento del personaje se entiende como norte (N), sur (S), este (E) u oeste (O)
-     * en este método hay que capturar por pantalla la acción que va a tomar el usuario de entre las posibles
-     * para ello hay que tener en cuenta que se debe avisar al usuario si puede realizar o no la acción.
-     * Se devolverá la sala destino a la que se ha movido el personaje.
+     * El desplazamiento del personaje se entiende como norte (N), sur (S), este (E) u oeste (O).
      *
-     * @param teclado
-     * @param salaActual
-     * @return
+     * @param teclado Objeto de la clase Scanner
+     * @param salaActual Sala en la que se encuentra el personaje dentro del mapa
+     * @return Sala donde se mueve el personaje
      */
     public Sala seleccionarMovimiento(Scanner teclado, Sala salaActual) {
         Sala salaDestino = null;

@@ -1,5 +1,5 @@
 /**
- * Clase Monstruo
+ * Clase Monstruo: Permite crear y gestrionar los monstruos que contienen las salas del juego
  */
 public class Monstruo {
     /**
@@ -11,7 +11,7 @@ public class Monstruo {
      */
     private final int ataque;
     /**
-     * Parámetro inslaterable entero que contiene la defensa del monstruo
+     * Parámetro inalterable entero que contiene la defensa del monstruo
      */
     private final int defensa;
     /**

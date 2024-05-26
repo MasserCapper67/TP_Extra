@@ -1,17 +1,26 @@
 /**
- * Clase Item
+ * Clase Item: Permite crear y gestrionar los ítems que contienen las salas del juego
  */
 public class Item {
+    /**
+     * Valor del peso del objeto
+     */
     private final double peso;
+    /**
+     * Cantidad de valor que posee el objeto
+     */
     private final double valor;
+    /**
+     * Nombre / descripción del objeto
+     */
     private final String descripcion;
 
     /**
      * Constructor de la clase item
      *
-     * @param descripcion
-     * @param peso
-     * @param valor
+     * @param descripcion Nombre / descripción del objeto
+     * @param peso Peso del objeto
+     * @param valor Valor del objeto
      */
     public Item(String descripcion, double peso, double valor) {
         this.descripcion = descripcion;
@@ -20,7 +29,7 @@ public class Item {
     }
 
     /**
-     * Método getPeso
+     * Método getPeso: Devuelve el peso del objeto
      *
      * @return double peso
      */
@@ -29,7 +38,7 @@ public class Item {
     }
 
     /**
-     * Método getValor
+     * Método getValor: Devuelve el valor del objeto
      *
      * @return double valor
      */
@@ -38,7 +47,7 @@ public class Item {
     }
 
     /**
-     * Método getDescripcion
+     * Método getDescripcion: Devuelve la descripción del objeto
      *
      * @return String descripcion
      */
@@ -47,11 +56,9 @@ public class Item {
     }
 
     /**
-     * Método sobreescrito para devolver la información de un item
-     * Método para devolver un String con la información del item en el formato
-     * descrito en la memoria de la práctica P.e: "Espada Mágica (Peso: 1,5, Valor: 100,0)"
+     * Método sobreescrito para devolver la información de un ítem
      *
-     * @return
+     * @return String con información del ítem
      */
     @Override
     public String toString() {
@@ -60,8 +67,7 @@ public class Item {
 
     /**
      * Método que sobreescribe el comportamiento de equals
-     * Método para comparar si el objeto pasado como parámetro es igual a este,
-     * hay que comparar los parámetros internos del objeto (peso, valor, descripción)
+     * Compara si el objeto pasado como parámetro es igual a este, en función de sus parámetros
      *
      * @param obj
      * @return True en caso de ser igual, false en otro caso
