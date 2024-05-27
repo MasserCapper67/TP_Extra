@@ -58,7 +58,7 @@ public class Item {
     /**
      * Método sobreescrito para devolver la información de un ítem
      *
-     * @return String con información del ítem
+     * @return String
      */
     @Override
     public String toString() {
