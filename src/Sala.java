@@ -35,12 +35,12 @@ public class Sala {
     /**
      * Constructor de clase para inicializar los atributos de clase
      *
-     * @param descripcion descripción de la sala
-     * @param max_items número máximo de items que puede contener la sala
-     * @param max_monstruos número máximo de monstruos que puede contener la sala
+     * @param descripcion       descripción de la sala
+     * @param max_items         número máximo de items que puede contener la sala
+     * @param max_monstruos     número máximo de monstruos que puede contener la sala
      * @param maxTrampasPorSala número máximo de trampas que puede contener la sala
-     * @param fila fila de la sala dentro del mapa
-     * @param columna columna de la sala dentro del mapa
+     * @param fila              fila de la sala dentro del mapa
+     * @param columna           columna de la sala dentro del mapa
      */
     public Sala(String descripcion, int max_items, int max_monstruos, int maxTrampasPorSala, int fila, int columna) {
         this.descripcion = descripcion;
@@ -52,12 +52,11 @@ public class Sala {
     }
 
     /**
-     * Método agregarItem para incluir items en la sala
-     * Compueba si existe el objeto en la sala o si la lista de items no está ya llena. En caso afirmativo
-     * devuelve false. En caso de no existir se incluye en la lista y devuelve true
+     * Método agregarItem para incluir items en la sala.
+     * Compueba si existe el objeto en la sala o si la lista de items no está ya llena
      *
-     * @param item objeto ítem que se tratará de introducir al vector de ítems de la sala
-     * @return boolean
+     * @param item objeto que se tratará de introducir al vector de ítems de la sala
+     * @return true si consigue agregar el ítem / false en caso contrario
      */
     public boolean agregarItem(Item item) {
         boolean agregado = false;
@@ -76,12 +75,11 @@ public class Sala {
     }
 
     /**
-     * Método agregarMonstruo para incluir un monstruo en la sala
-     * Comprueba si existe el monstruo en la sala o si la lista de monstruos no está ya llena. En caso afirmativo
-     * devuelve false. En caso de no existir se incluye en la lista y devuelve true
+     * Método agregarMonstruo para incluir un monstruo en la sala.
+     * Comprueba si existe el monstruo en la sala o si la lista de monstruos no está ya llena
      *
      * @param monstruo objeto monstruo que se tartará de introducir en el vector de monstruos de la sala
-     * @return boolean
+     * @return true si consigue agregar el monstruo / false en caso contrario
      */
     public boolean agregarMonstruo(Monstruo monstruo) {
         boolean agregado = false;
@@ -100,12 +98,11 @@ public class Sala {
     }
 
     /**
-     * Método agregarTrampa para incluir una trampa en la sala
-     * Comprueba si existe la trampa en la sala o si la lista de trampas no está ya llena. En caso afirmativo
-     * devuelve false. En caso de no existir se incluye en la lista y devuelve true
+     * Método agregarTrampa para incluir una trampa en la sala.
+     * Comprueba si existe la trampa en la sala o si la lista de trampas no está ya llena
      *
      * @param trampa objeto trampa que se tratará de insertar en el vector de trampas de la sala
-     * @return boolean
+     * @return true si consigue agregar la trampa / false en caso contrario
      */
     public boolean agregarTrampa(Trampa trampa) {
         boolean agregado = false;
@@ -134,9 +131,8 @@ public class Sala {
 
     /**
      * Método hayMonstruos para comprobar si hay algún monstruo en la sala
-     * Comprueba si hay algún monstruo en la lista. En caso afirmativo devuelve true
      *
-     * @return boolean
+     * @return true si hay al menos un monstruo en la sala / false si no hay ninguno
      */
     public boolean hayMonstruos() {
         boolean result = false;
@@ -149,12 +145,12 @@ public class Sala {
     }
 
     /**
-     * Método seleccionarMonstruo para introducir desde pantalla el nombre de un monstruo
+     * Método seleccionarMonstruo para introducir desde pantalla el nombre de un monstruo.
      * Muestra por pantalla todos los monstruos y luego solicita que se introduzca el nombre del monstruo que se
      * quiere seleccionar
      *
      * @param teclado objeto de la clase Scanner
-     * @return Monstruo
+     * @return Monstruo atacado
      */
     public Monstruo seleccionarMonstruo(Scanner teclado) {
         Monstruo atacado = null;
@@ -172,10 +168,9 @@ public class Sala {
 
     /**
      * Método buscarMonstruo para buscar un monstruo dado el nombre del mismo
-     * Devuelve el monstruo según el nombre pasado como parámetro o null si no se encuentra
      *
      * @param nombreMonstruo String que contiene el nombre del monstruo que se quiere buscar
-     * @return Monstruo
+     * @return Monstruo buscado si encuentra el nombre / null si no lo encuentra
      */
     public Monstruo buscarMonstruo(String nombreMonstruo) {
         Monstruo buscado = null;
@@ -188,7 +183,7 @@ public class Sala {
     }
 
     /**
-     * Método listarMonstruos para mostrar por pantalla la información de los monstruos
+     * Método listarMonstruos para mostrar por pantalla la información de los monstruos.
      * Muestra por pantalla la información de los monstruos utilizando los métodos implementados en la clase "monstruo"
      */
     private void listarMonstruos() {
@@ -198,7 +193,7 @@ public class Sala {
     }
 
     /**
-     * Método eliminarMonstruo para eliminar un monstruo de la lista segun un nombre dado
+     * Método eliminarMonstruo para eliminar un monstruo de la lista segun un nombre dado.
      * Busca en la lista el monstruo según el nombre pasado como parámetro y lo elimina.
      *
      * @param nombreMonstruo nombre del monstruo que se quiere eliminar
@@ -211,9 +206,8 @@ public class Sala {
 
     /**
      * Método hayTrampas para saber si la sala dispone de alguna trampa
-     * Devuelve true si existe alguna trampa en la sala o false en caso contrario
      *
-     * @return boolean
+     * @return true si hay alguna trampa / false si no hay trampas
      */
     public boolean hayTrampas() {
         boolean result = false;
@@ -245,9 +239,8 @@ public class Sala {
 
     /**
      * Método hayItems para mostrar si existe algún item en la sala
-     * Devuelve true hay algún item en la lista de items o false en caso contrario
      *
-     * @return boolean
+     * @return true si se encuentra al menos un ítem / false si no hay ningún ítem
      */
     public boolean hayItems() {
         boolean result = false;
@@ -261,11 +254,9 @@ public class Sala {
 
     /**
      * Método buscarItem para obtener un item según una descripcion dada
-     * Busca en la lista de items un item con la descripción pasada como parámetro. Devuelve null si no lo
-     * encuentra
      *
      * @param descripcion String que contiene el nombre del ítem que queremos buscar
-     * @return Item
+     * @return Item result si encuentra el nombre / null si no lo encuentra
      */
     public Item buscarItem(String descripcion) {
         Item result = null;
@@ -277,11 +268,9 @@ public class Sala {
 
     /**
      * Método buscarTrampa para obtener una trampa según una descripcion dada
-     * Buscar en la lista de trampas una trampa con la descripción pasada como parámetro. Devuelve null si no lo
-     * encuentra
      *
      * @param descripcion String que contiene la descripción de la trampa que queremos eliminar
-     * @return Trampa
+     * @return Trampa result si encuentra el nombre / null si no lo encuentra
      */
     public Trampa buscarTrampa(String descripcion) {
         Trampa result = null;
@@ -301,12 +290,12 @@ public class Sala {
     }
 
     /**
-     * Método seleccionarItem para obtener un ítem concreto con parámetros pasados por pantalla
+     * Método seleccionarItem para obtener un ítem concreto con parámetros pasados por pantalla.
      * Muestra por pantalla todos los items de la sala para despues pedir que se introduzca una descripcion del
-     * item que se quiere seleccionar
+     * ítem que se quiere seleccionar
      *
      * @param teclado objeto de la clase Scanner
-     * @return Item
+     * @return Item result
      */
     public Item seleccionarItem(Scanner teclado) {
         Item result = null;
@@ -325,9 +314,9 @@ public class Sala {
     }
 
     /**
-     * Método listarItems para mostrar por pantalla todos los items
+     * Método listarItems para mostrar por pantalla todos los ítems.
      * Utiliza las funciones de la clase Item para poder mostrar por pantalla toda la información de todos los
-     * items que hay en la sala
+     * ítems que hay en la sala
      */
     private void listarItems() {
         for (int i = 0; i < this.items.length; i++) {
@@ -336,7 +325,7 @@ public class Sala {
     }
 
     /**
-     * Método eliminarItem para eliminar un ítem con la descripcion pasada como parámetro
+     * Método eliminarItem para eliminar un ítem con la descripcion pasada como parámetro.
      * Busca el ítem que coincida con la descripción pasada por parámetro y lo elimina de la lista de ítems
      *
      * @param descripcion String que contiene la descripción del ítem que se quiere eliminar

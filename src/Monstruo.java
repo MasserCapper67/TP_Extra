@@ -71,7 +71,7 @@ public class Monstruo {
     }
 
     /**
-     * Método recibirDanyo para calcular la vida restante
+     * Método recibirDanyo para calcular la vida restante.
      * Actualiza la vida restante del monstruo despues de un ataque, siempre que el
      * valor de ataque sea positivo
      *
@@ -86,7 +86,7 @@ public class Monstruo {
     }
 
     /**
-     * Método sobreescrito para devolver la información de un monstruo
+     * Método sobreescrito para devolver la información de un monstruo.
      * Devuelve un String con la información del monstruo en el siguiente formato: "[ Trasgo (V: 20, A: 5, D: 2) ]"
      *
      * @return String
@@ -97,8 +97,8 @@ public class Monstruo {
     }
 
     /**
-     * Método que sobreescribe el comportamiento de equals
-     * Compara si el objeto pasado como parámetro es igual a este, en función delos parámetros internos
+     * Método que sobreescribe el comportamiento de equals.
+     * Compara si el objeto pasado como parámetro es igual a este, en función de los parámetros internos
      * del objeto (nombre, vida, ataque, defensa)
      *
      * @param obj Objeto de la clase Object

@@ -41,7 +41,7 @@ public class Motor {
      * y los parámetros de maxItemsPorSala, maxMonstruosPorSala, maxTrampasPorSala.
      *
      * @param ficheroMapa nombre del fichero que contiene la información del mapa
-     * @return sala generada
+     * @return Sala[][] mapa
      */
     Sala[][] cargarMapa(String ficheroMapa) {
         Sala[][] mapa = this.mapa;
@@ -184,7 +184,7 @@ public class Motor {
      *
      * @param fila fila del mapa que se desea buscar
      * @param columna columna del mapa que se desea buscar
-     * @return Sala (del mapa)
+     * @return Sala
      */
     public Sala getSala(int fila, int columna) {
         return mapa[fila][columna];
@@ -197,7 +197,7 @@ public class Motor {
      *
      * @param fila fila de la matriz Mapa
      * @param columna columna de la matriz Mapa
-     * @return String con el trazado del mapa
+     * @return String
      */
     public String mostrarMapa(int fila, int columna) {
         StringBuilder sb = new StringBuilder();
@@ -338,7 +338,7 @@ public class Motor {
      *
      * @param teclado Objeto de la clase Scanner
      * @param salaActual Sala en la que se encuentra el personaje dentro del mapa
-     * @return Sala donde se mueve el personaje
+     * @return Sala salaDestino
      */
     public Sala seleccionarMovimiento(Scanner teclado, Sala salaActual) {
         Sala salaDestino = null;
@@ -354,7 +354,6 @@ public class Motor {
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila() - 1][salaActual.getColumna()];
-                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
@@ -365,7 +364,6 @@ public class Motor {
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() + 1];
-                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
@@ -376,7 +374,6 @@ public class Motor {
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila() + 1][salaActual.getColumna()];
-                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
                     break;
@@ -387,7 +384,6 @@ public class Motor {
                         }
                         if (movimientoValido) {
                             salaDestino = mapa[salaActual.getFila()][salaActual.getColumna() - 1];
-                            //salaActual = salaDestino;
                         } else System.out.println("Camino cerrado por esa dirección.");
                     }
             }

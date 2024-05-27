@@ -66,7 +66,7 @@ public class Item {
     }
 
     /**
-     * Método que sobreescribe el comportamiento de equals
+     * Método que sobreescribe el comportamiento de equals.
      * Compara si el objeto pasado como parámetro es igual a este, en función de sus parámetros
      *
      * @param obj

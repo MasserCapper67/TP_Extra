@@ -13,11 +13,10 @@ public class Utilidades {
 
     /**
      * Método estático leerCadena para leer un cadena de carecteres por pantalla
-     * leer por pantalla y comprobar que es una cadena de caracteres válida.
      *
      * @param teclado objeto de la clase Scanner
      * @param s mensaje que se imprimirá por terminal
-     * @return String
+     * @return String result
      */
     public static String leerCadena(Scanner teclado, String s) {
         teclado = new Scanner(System.in);
@@ -32,14 +31,14 @@ public class Utilidades {
 
     /**
      * Método estático leerNumero para leer un numero pasado por pantalla
-     * leer por pantalla y comprobar que es un número valido. Solicita un número repetidamente hasta que se
+     * Se lee por pantalla y  se comprueba que es un número valido. Solicita un número repetidamente hasta que se
      * introduzca uno correcto (dentro de los límites)
      *
      * @param teclado objeto de la clase Scanner
      * @param mensaje mensaje que se imprimirá por terminal
      * @param minimo valor mínimo que podrá tomar el número introducido dentro de ciertos límites
      * @param maximo valor máximo que podrá tomar el número introducido dentro de ciertos límites
-     * @return int
+     * @return int result
      */
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
         int result = 0;
@@ -64,7 +63,7 @@ public class Utilidades {
      * Método que en base a un String ingresado por el usuario comprueba si únicamente contiene caracteres alfabéticos
      *
      * @param s String del que se realizará la comprobación
-     * @return boolean
+     * @return true si únicamente contiene caracteres alfabéticos / false en caso contrario
      */
     private static boolean esAlfabetico(String s) {
         String valido = " qwertyuiopñlkjhgfdsazxcvbnmQWERTYUIOPÑLKJHGFDSAZXCVBNMáéíóúÁÉÍÓÚ";
@@ -83,7 +82,7 @@ public class Utilidades {
      *
      * @param teclado objeto de la clase Scanner
      * @param mensaje mensaje que se imprimirá por terminal
-     * @return String
+     * @return String movimiento
      */
     public static String leerMovimiento(Scanner teclado, String mensaje) {
         String movimiento = null;

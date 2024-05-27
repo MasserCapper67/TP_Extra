@@ -55,7 +55,7 @@ public class Personaje {
      * se genera un objeto con dichas características.
      *
      * @param teclado Objeto de la clase Scanner
-     * @return Personaje
+     * @return Personaje result
      */
     public static Personaje crearPersonaje(Scanner teclado) {
         Personaje result;
@@ -135,7 +135,7 @@ public class Personaje {
      * Devuelve null si el índice no es válido, y el ítem si el índice es correcto
      *
      * @param indice Posición donde se desea buscar en el vector de ítems
-     * @return Item
+     * @return Item result
      */
     public Item getItem(int indice) {
         Item result = null;
@@ -199,7 +199,7 @@ public class Personaje {
      * Método getPesoMochila para obtener el peso total que carga en la mochila el personaje
      * Recorre la lista de ítems para obtener el peso total de todos y devolverlo
      *
-     * @return double
+     * @return double result
      */
     public double getPesoMochila() {
         double result = 0.0;
@@ -213,7 +213,7 @@ public class Personaje {
      * Método getValorMochila para obtener el valor total que lleva entre todos los items el personaje.
      * Recorre la lista de items para obtener el valor total de todos y devolverlo
      *
-     * @return double
+     * @return double result
      */
     public double getValorMochila() {
         double result = 0.0;
@@ -232,7 +232,7 @@ public class Personaje {
      * Peso total: 5.5 Kg
      * Tu mochila vale 400 monedas"
      *
-     * @return String
+     * @return String result
      */
     public String infoMochila() {
         StringBuilder sb = null;
