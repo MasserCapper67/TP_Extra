@@ -1,5 +1,9 @@
 /**
  * Clase Item: Permite crear y gestrionar los ítems que contienen las salas del juego
+ *
+ * @author Álvaro Bardají Robles
+ * @author Sergio Arias
+ * @version 1.0
  */
 public class Item {
     /**

@@ -3,6 +3,10 @@ import java.util.Scanner;
 /**
  * Clase Personaje: Permite la creación del personaje que usará el usuario dentro del juego, determinando sus
  * atributos, así como la gestión de inventario y salud
+ *
+ * @author Álvaro Bardají Robles
+ * @author Sergio Arias
+ * @version 1.0
  */
 public class Personaje {
     /**

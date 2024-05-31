@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 /**
  * Clase principal de Aventuras desde donde lanzar la ejecución de la práctica
+ *
+ * @author Álvaro Bardají Robles
+ * @author Sergio Arias
+ * @version 1.0
  */
 public class Aventuras {
 

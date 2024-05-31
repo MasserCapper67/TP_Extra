@@ -4,6 +4,10 @@ import java.util.Scanner;
 /**
  * Clase Sala: Contiene la información y permite el manejo de las distintas entidades que contiene una
  * sala / habitación dentro del mapa. Una sala puede estar constituida tanto por monstruos, trampas u objetos
+ *
+ * @author Álvaro Bardají Robles
+ * @author Sergio Arias
+ * @version 1.0
  */
 public class Sala {
     /**

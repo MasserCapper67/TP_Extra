@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 /**
  * Clase Motor: Contiene las mecánicas y el bucle mediante los que se desarrollará el juego
+ *
+ * @author Álvaro Bardají Robles
+ * @author Sergio Arias
+ * @version 1.0
  */
 public class Motor {
     /**
