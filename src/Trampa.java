@@ -40,4 +40,15 @@ public class Trampa {
     public int getDanyo() {
         return danyo;
     }
+
+    // HE AÑADIDO UN PUBLIC BOOLEAN EQUALS (OBJECT OBJ) PARA QUE SE COMPAREN ATRIBUTOS Y NO REFERENCIAS EN AGREGARTRAMPA
+    public boolean equals(Object obj) {
+        boolean equals = false;
+        if (obj instanceof Trampa){
+            if (this.descripcion.equals(((Trampa) obj).getDescripcion()) && this.danyo == ((Trampa) obj).getDanyo()){
+                equals = true;
+            }
+        }
+        return equals;
+    }
 }
